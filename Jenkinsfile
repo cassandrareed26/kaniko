@@ -9,7 +9,7 @@ podTemplate(yaml: '''
         - sleep
         args:
         - 99d
-	volumeMounts:
+        volumeMounts:
         - name: shared-storage
           mountPath: /mnt
       - name: kaniko
