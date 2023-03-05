@@ -4,7 +4,7 @@ podTemplate(yaml: '''
     spec:
       containers:
       - name: gradle
-        image: gradle:6.3-jdk-14
+        image: gradle:6.3-jdk14
         command:
         - sleep
         args:
