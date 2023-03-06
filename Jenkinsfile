@@ -67,10 +67,12 @@ podTemplate(yaml: '''
     }
      stage("Unit test") {
        echo 'Unit test on not main branch'
+       cd /home/jenkins/agent/workspace/kaniko/Chapter08/sample1
        sh "./gradlew test"
        }
     stage("Code coverage") {
        echo 'Code coverage for only main branch'
+       cd /home/jenkins/agent/workspace/kaniko/Chapter08/sample1
        sh "./gradlew jacocoTestReport"
        sh "./gradlew jacocoTestCoverageVerification"
         }
