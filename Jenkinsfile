@@ -13,7 +13,7 @@ podTemplate(yaml: '''
         - 99d
         volumeMounts:
         - name: shared-storage
-          mountPath: /mnt
+          mountPath: /mnt        
       - name: kaniko
         image: gcr.io/kaniko-project/executor:debug
         command:
@@ -28,8 +28,8 @@ podTemplate(yaml: '''
       restartPolicy: Never
       volumes:
       - name: shared-storage
-      persistentVolumeClaim:
-        claimName: jenkins-pv-claim
+        persistentVolumeClaim:
+          claimName: jenkins-pv-claim
       - name: kaniko-secret
         secret:
             secretName: dockercred
@@ -39,15 +39,13 @@ podTemplate(yaml: '''
 ''') {
   node(POD_LABEL) {
     stage('Build a gradle project') {
-      git 'https://github.com/cassandrareed26/kaniko'
+      git 'https://github.com/cassandrareed26/kaniko.git'
       container('gradle') {
         stage('Build a gradle project') {
           sh '''
-          cd /home/jenkins/agent/workspace/week7/Chapter08/sample1
           chmod +x gradlew
           ./gradlew build
           mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
-          echo pwd
           '''
         }
       }
