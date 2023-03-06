@@ -65,18 +65,15 @@ podTemplate(yaml: '''
         }
       }
     }
-    stage("Unit test") {
-	       steps {
-		    echo 'Unit test on not main branch'
-                    sh "./gradlew test"
-               }
-          }
+     stage("Unit test") {
+       echo 'Unit test on not main branch'
+       sh "./gradlew test"
+       }
     stage("Code coverage") {
-            steps {
-		    echo 'Code coverage for only main branch'
-                    sh "./gradlew jacocoTestReport"
-                    sh "./gradlew jacocoTestCoverageVerification"
-               }
-          }
+       echo 'Code coverage for only main branch'
+       sh "./gradlew jacocoTestReport"
+       sh "./gradlew jacocoTestCoverageVerification"
+        }
+      
   }
 }
