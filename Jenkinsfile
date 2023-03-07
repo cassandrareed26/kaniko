@@ -68,7 +68,7 @@ podTemplate(yaml: '''
     stage('Unit test') {
 	    try {
 		    sh '''
-	               cd Chapter08/sample1
+	               cd /home/jenkins/agent/workspace/kaniko/Chapter08/sample1
 	               chmod +x gradlew
 	               ./gradlew test
 	               '''
@@ -79,14 +79,22 @@ podTemplate(yaml: '''
     stage('Unit test') {
 	    try {
 		    sh '''
-	               cd Chapter08/sample1
+	               cd /home/jenkins/agent/workspace/kaniko/Chapter08/sample1
 	               chmod +x gradlew
-	               ./gradlew jacocoTestReport
 		       ./gradlew jacocoTestCoverageVerification
+	               ./gradlew jacocoTestReport
 	               '''
 		     } catch (Exception E) {
                         echo 'Failure detected'
                     }
+	    
+	            // from the HTML publisher plugin
+                    // https://www.jenkins.io/doc/pipeline/steps/htmlpublisher/
+                    publishHTML (target: [
+                        reportDir: 'Chapter08/sample1/build/reports/tests/test',
+                        reportFiles: 'index.html',
+                        reportName: "JaCoCo Report"
+                    ])                       
     }
   }
 }
