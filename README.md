@@ -1,1 +1,1 @@
-# kaniko v1
+# kaniko v2
