@@ -55,9 +55,7 @@ podTemplate(yaml: '''
 	    try {
 		    echo "I am the ${env.BRANCH_NAME} branch"
 		    sh '''
-		       //pwd
 	               cd Chapter08/sample1
-	               //chmod +x gradlew
 	               ./gradlew test
 	               '''
 		     } catch (Exception E) {
@@ -69,7 +67,6 @@ podTemplate(yaml: '''
 	    try {
 		    sh '''
 	               cd Chapter08/sample1
-	               //chmod +x gradlew
 		       ./gradlew jacocoTestCoverageVerification
 	               ./gradlew jacocoTestReport
 	               '''
@@ -84,7 +81,6 @@ podTemplate(yaml: '''
                         reportFiles: 'index.html',
                         reportName: "JaCoCo Report"
                     ])
-	    //}
     }
 
     stage('Build Java Image') {
