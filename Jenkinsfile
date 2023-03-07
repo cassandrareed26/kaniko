@@ -66,8 +66,10 @@ podTemplate(yaml: '''
       }
     } 
     stage('Code coverage') {
+	    sh '''
 	    cd /home/jenkins/agent/workspace/kaniko/Chapter08/sample1
-	    sh "./gradlew test"
+	    ./gradlew test
+	    '''
     }
   }
 }
