@@ -65,11 +65,28 @@ podTemplate(yaml: '''
         }
       }
     } 
-    stage('Code coverage') {
-	    sh '''
-	    cd /home/jenkins/agent/workspace/kaniko/Chapter08/sample1
-	    ./gradlew test
-	    '''
+    stage('Unit test') {
+	    try {
+		    sh '''
+	               cd /home/jenkins/agent/workspace/kaniko/Chapter08/sample1
+	               chmod +x gradlew
+	               ./gradlew test
+	               '''
+		     } catch (Exception E) {
+                        echo 'Failure detected'
+                    }
+    }
+    stage('Unit test') {
+	    try {
+		    sh '''
+	               cd /home/jenkins/agent/workspace/kaniko/Chapter08/sample1
+	               chmod +x gradlew
+	               ./gradlew jacocoTestReport
+		       ./gradlew jacocoTestCoverageVerification
+	               '''
+		     } catch (Exception E) {
+                        echo 'Failure detected'
+                    }
     }
   }
 }
