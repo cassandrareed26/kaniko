@@ -68,8 +68,8 @@ podTemplate(yaml: '''
     stage('Unit test') {
 	    try {
 		    echo "I am the ${env.BRANCH_NAME} branch"
-		    pwd
 		    sh '''
+		       pwd
 	               cd Chapter08/sample1
 	               chmod +x gradlew
 	               ./gradlew test
