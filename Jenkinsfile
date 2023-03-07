@@ -68,7 +68,7 @@ podTemplate(yaml: '''
     stage('Unit test') {
 	    try {
 		    sh '''
-	               cd /home/jenkins/agent/workspace/kaniko/Chapter08/sample1
+	               cd Chapter08/sample1
 	               chmod +x gradlew
 	               ./gradlew test
 	               '''
@@ -79,7 +79,7 @@ podTemplate(yaml: '''
     stage('Unit test') {
 	    try {
 		    sh '''
-	               cd /home/jenkins/agent/workspace/kaniko/Chapter08/sample1
+	               cd Chapter08/sample1
 	               chmod +x gradlew
 	               ./gradlew jacocoTestReport
 		       ./gradlew jacocoTestCoverageVerification
